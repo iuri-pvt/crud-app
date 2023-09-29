@@ -1,0 +1,26 @@
+<!-- views/edit.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Registro</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Editar Registro</h1>
+    
+    <form action="/update/<%= index %>" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" value="<%= record.nome %>" required>
+      <br>
+      <label for="idade">Idade:</label>
+      <input type="number" name="idade" id="idade" value="<%= record.idade %>" required>
+      <br>
+      <button type="submit">Salvar</button>
+    </form>
+    
+    <a href="/">Voltar para a Lista</a>
+  </div>
+</body>
+</html>

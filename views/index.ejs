@@ -1,0 +1,42 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRUD App</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CRUD App</h1>
+    
+    <form action="/add" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" required>
+      <br>
+      <label for="idade">Idade:</label>
+      <input type="number" name="idade" id="idade" required>
+      <br>
+      <button type="submit">Adicionar</button>
+    </form>
+    
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Ações</th>
+      </tr>
+      <% data.forEach(function(record, index) { %>
+        <tr>
+          <td><%= record.nome %></td>
+          <td><%= record.idade %></td>
+          <td>
+            <a href="/edit/<%= index %>">Editar</a>
+            <a href="/delete/<%= index %>">Excluir</a>
+          </td>
+        </tr>
+      <% }); %>
+    </table>
+  </div>
+</body>
+</html>
