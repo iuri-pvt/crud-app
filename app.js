@@ -11,9 +11,11 @@ app.use(express.static('public'));
 
 // Página inicial
 app.get('/', (req, res) => {
-  const data = loadData();
+  const query = req.query.query;
+  const data = query ? searchRecords(query) : loadData();
   res.render('index.ejs', { data });
 });
+
 
 // Adicionar um novo registro
 app.post('/add', (req, res) => {
@@ -64,6 +66,15 @@ app.post('/update/:index', (req, res) => {
   }
   res.redirect('/');
 });
+
+// Rota para pesquisa
+app.get('/search', (req, res) => {
+  const query = req.query.query.toLowerCase();
+  const data = loadData();
+  const results = data.filter(record => record.nome.toLowerCase().includes(query));
+  res.render('index.ejs', { data: results });
+});
+
 
 // Função para carregar dados do arquivo JSON
 function loadData() {
